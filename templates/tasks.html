@@ -1,0 +1,70 @@
+{% extends "layouts/base.html" %} {% load static %} {% block title %}
+Tasks{%endblock title %} {% block content %}
+<div class="container mt-5">
+  <h4 class="text-center alert alert-success w-100">New tasks</h4>
+  <div class="row">
+    <div class="col-sm-6">
+      <h5 class="text-center alert alert-info">Tasks Registration</h5>
+      <form action="" method="POST">
+        {% csrf_token %} {{form.as_p}} {% comment %}
+        <div class="form-group row d-flex flex-row justify-content-center">
+          <label
+            for="{{ form.Start_Date.id_for_label }}"
+            class="col-sm-1 col-form-label"
+            >Start Date</label
+          >
+          <div class="col-sm-1 mr-5 w-35">{{ form.Start_Date }}</div>
+          <label
+            for="{{ form.End_Date.id_for_label }}"
+            class="col-sm-1 col-form-label"
+            >End Date</label
+          >
+          <div class="col-sm-1 mr-7 w-35">{{ form.End_Date }}</div>
+        </div>
+        {% endcomment %}
+        <div>
+          <input class="btn btn-success" type="Submit" value="ADD" />
+        </div>
+      </form>
+    </div>
+
+    <div class="col-sm-6">
+      <h5 class="text-center alert alert-info">Tasks Information</h5>
+      {% if form %}
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Emp_ID</th>
+            <th scope="col">Domain</th>
+            <th scope="col">Title</th>
+            <th scope="col">Start_date</th>
+            <th scope="col">End_date</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for tinfo in form %}
+          <tr>
+            <td>{{tinfo.id}}</td>
+            <td>{{tinfo.Task_Domain}}</td>
+            <td>{{tinfo.Title}}</td>
+            <td>{{tinfo.Start_date}}</td>
+            <td>{{tinfo.End_date}}</td>
+            <td>
+              <a href="#" class="btn btn-warning btn-sm">Edit</a>
+              <a href="#" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% else %}
+      <h5 class="text-center alert alert-warning">No Records</h5>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock content %}
