@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from django.shortcuts import render
+
 from home.models import Admin
 from .forms import tasksentry
 
@@ -32,9 +32,3 @@ def delete_data(request,id):
         pi.delete()
         return HttpResponseRedirect('/')
 
-def dashboard(request):
-    data = {
-        'labels': ['January', 'February', 'March', 'April', 'May'],
-        'values': [10, 20, 15, 25, 30]  # Sample data
-    }
-    return render(request, 'dashboard.html', {'data': data})
